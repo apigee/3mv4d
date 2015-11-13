@@ -1,0 +1,7 @@
+<AssignMessage name='Set-NoCopyPath'>
+  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+  <AssignVariable>
+    <Name>target.copy.pathsuffix</Name>
+    <Value>false</Value>
+  </AssignVariable>
+</AssignMessage>

@@ -1,0 +1,85 @@
+<ProxyEndpoint name='default'>
+  <Description>Default Proxy</Description>
+  <HTTPProxyConnection>
+    <BasePath>/3mv4d-xform</BasePath>
+    <Properties/>
+    <VirtualHost>default</VirtualHost>
+    <VirtualHost>secure</VirtualHost>
+  </HTTPProxyConnection>
+
+  <FaultRules/>
+
+  <PreFlow name="PreFlow">
+      <Response/>
+  </PreFlow>
+
+  <PostFlow name="PostFlow">
+      <Request/>
+      <Response>
+        <Step><Name>Javascript-EmitElapsed</Name></Step>
+      </Response>
+  </PostFlow>
+
+  <Flows>
+    <Flow name='xmltojson'>
+      <Description>Converts an incoming XML message into JSON and echoes it back</Description>
+      <Request>
+        <Step><Name>XMLToJSON-1</Name></Step>
+      </Request>
+      <Response>
+        <Step><Name>Assign-To-Output</Name></Step>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/xmltojson") and (request.verb = "POST")</Condition>
+    </Flow>
+
+    <Flow name='jsontoxml'>
+      <Description>Converts an incoming JSON message into XML and echoes it back</Description>
+      <Request>
+        <Step><Name>JSONToXML-1</Name></Step>
+      </Request>
+      <Response>
+        <Step><Name>Assign-To-Output</Name></Step>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/jsontoxml") and (request.verb = "POST")</Condition>
+    </Flow>
+
+    <Flow name='forecast1 - xml'>
+      <Description>gets the weather for the designated WOEID</Description>
+      <Request/>
+
+      <Response>
+        <Step><Name>XSL-XformResponse</Name></Step>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/forecast1") and (request.verb = "GET")</Condition>
+    </Flow>
+
+    <Flow name='forecast2 - json'>
+      <Description>gets the weather for the designated WOEID - JSON</Description>
+      <Request/>
+
+      <Response>
+        <Step><Name>XSL-XformResponse</Name></Step>
+        <Step><Name>XMLToJSON-1</Name></Step>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/forecast2") and (request.verb = "GET")</Condition>
+    </Flow>
+
+    <Flow name="unknown request">
+      <!-- apply when none of the conditions on the above flows eval to true -->
+      <Request>
+        <Step>
+          <Name>RaiseFault-UnknownRequest</Name>
+        </Step>
+      </Request>
+      <Response/>
+    </Flow>
+  </Flows>
+
+  <RouteRule name='YahooWeather'>
+    <TargetEndpoint>yahooweather</TargetEndpoint>
+    <Condition>proxy.pathsuffix ~~ "/forecast[12]"</Condition>
+  </RouteRule>
+
+  <RouteRule name='DoNothingRouteRule'/>
+
+</ProxyEndpoint>

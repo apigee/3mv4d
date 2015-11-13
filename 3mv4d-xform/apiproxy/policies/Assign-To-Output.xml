@@ -1,0 +1,7 @@
+<AssignMessage name='Assign-To-Output'>
+  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+  <AssignVariable>
+    <Name>response.content</Name>
+    <Ref>request.content</Ref>
+  </AssignVariable>
+</AssignMessage>
