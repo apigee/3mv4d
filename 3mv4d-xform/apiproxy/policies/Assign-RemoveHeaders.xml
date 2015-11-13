@@ -1,0 +1,10 @@
+<AssignMessage name='Assign-RemoveHeaders'>
+  <DisplayName>Assign-RemoveHeaders</DisplayName>
+  <Remove>
+    <Headers>
+      <Header name='user-agent'/>
+      <Header name='host'/>
+    </Headers>
+  </Remove>
+  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+</AssignMessage>

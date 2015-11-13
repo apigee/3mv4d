@@ -1,33 +1,12 @@
 <ProxyEndpoint name='default'>
   <Description>Default Proxy</Description>
-  <HTTPProxyConnection>
-    <BasePath>/3mv4d-xform</BasePath>
-    <Properties/>
-    <VirtualHost>default</VirtualHost>
-    <VirtualHost>secure</VirtualHost>
-  </HTTPProxyConnection>
-
-  <FaultRules/>
-
-  <PreFlow name="PreFlow">
-      <Response/>
-  </PreFlow>
-
-  <PostFlow name="PostFlow">
-      <Request/>
-      <Response>
-        <Step><Name>Javascript-EmitElapsed</Name></Step>
-      </Response>
-  </PostFlow>
-
   <Flows>
     <Flow name='xmltojson'>
       <Description>Converts an incoming XML message into JSON and echoes it back</Description>
       <Request>
-        <Step><Name>XMLToJSON-1</Name></Step>
       </Request>
       <Response>
-        <Step><Name>Assign-To-Output</Name></Step>
+        <Step><Name>XMLToJSON-1</Name></Step>
       </Response>
       <Condition>(proxy.pathsuffix MatchesPath "/xmltojson") and (request.verb = "POST")</Condition>
     </Flow>
@@ -35,10 +14,9 @@
     <Flow name='jsontoxml'>
       <Description>Converts an incoming JSON message into XML and echoes it back</Description>
       <Request>
-        <Step><Name>JSONToXML-1</Name></Step>
       </Request>
       <Response>
-        <Step><Name>Assign-To-Output</Name></Step>
+        <Step><Name>JSONToXML-1</Name></Step>
       </Response>
       <Condition>(proxy.pathsuffix MatchesPath "/jsontoxml") and (request.verb = "POST")</Condition>
     </Flow>
@@ -74,6 +52,27 @@
       <Response/>
     </Flow>
   </Flows>
+
+  <HTTPProxyConnection>
+    <BasePath>/3mv4d-xform</BasePath>
+    <Properties/>
+    <VirtualHost>default</VirtualHost>
+    <VirtualHost>secure</VirtualHost>
+  </HTTPProxyConnection>
+
+  <FaultRules/>
+
+  <PreFlow name="PreFlow">
+      <Response/>
+  </PreFlow>
+
+  <PostFlow name="PostFlow">
+      <Request/>
+      <Response>
+        <Step><Name>Javascript-EmitElapsed</Name></Step>
+        <Step><Name>Assign-RemoveHeaders</Name></Step>
+      </Response>
+  </PostFlow>
 
   <RouteRule name='YahooWeather'>
     <TargetEndpoint>yahooweather</TargetEndpoint>
