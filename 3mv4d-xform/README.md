@@ -1,7 +1,13 @@
 # XML-to-JSON and JSON-to-XML transformations
 
+If you deal with many different APIs, from time to time you will come upon one that is delivering results or accepting input in a form that is not optimal for you, or for the developers you're trying to enable. For example, the API will accept XML or return XML, when you want JSON. Or, it will accept or return JSON, and you want XML. 
+
+Apigee Edge has out-of-the-box policies that let you convert from one format to the other, in outbound requests or on a response. With these policies, you can use Apigee Edge to produce facades that work the way your developers want to work!
+
 This simple API proxy shows you how to apply the XMLToJSON and JSONToXML
-policies within Apigee Edge.
+policies within Apigee Edge. 
+
+There's a [4-minute video](https://www.youtube.com/watch?v=6z-TtOr7H-k) that demonstrates this in action. 
 
 
 ## Deploying the proxy
