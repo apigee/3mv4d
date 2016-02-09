@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignOpenweatherRequestParam">
+    <DisplayName>AssignOpenweatherRequestParam</DisplayName>
+    <Properties/>
+    <Set>
+        <QueryParams>
+            <QueryParam name="id">{w}</QueryParam>
+            <QueryParam name="appid">2de143494c0b295cca9337e1e96b00e0</QueryParam>
+        </QueryParams>
+        <Path/>
+    </Set>
+    <AssignVariable>
+        <Name>target.copy.pathsuffix</Name>
+        <Value>false</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>
