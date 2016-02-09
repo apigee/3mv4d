@@ -42,7 +42,7 @@ You have several options. Choose one:
 2. upload using an automated script, like [pushapi](https://github.com/carloseberhardt/apiploy/)  
   ``` 
   ./pushapi -v -d -o ORGNAME -e ENVNAME -c 4mv4d-routing-rule/ 
-
+  ``` 
 ## Turn [trace](http://docs.apigee.com/api-services/content/using-trace-tool-0) on
 
 ## Make the API call with the proxy.
