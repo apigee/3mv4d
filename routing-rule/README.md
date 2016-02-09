@@ -46,7 +46,7 @@ You have several options. Choose one:
 
 3. Turn [trace tool](http://docs.apigee.com/api-services/content/using-trace-tool-0) on
 
-## Make the API call with the proxy.
+## Make the API call to the proxy and observe the trace too see what target the requests are sent to.
 ```
 curl -i -X GET \ 
 	"http://ORGNAME-ENVNAME.apigee.net/v1/data/weather?w=2442047" \
