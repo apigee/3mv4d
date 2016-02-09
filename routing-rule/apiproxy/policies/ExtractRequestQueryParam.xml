@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="ExtractRequestQueryParam">
+    <DisplayName>ExtractRequestQueryParam</DisplayName>
+    <Properties/>
+    <QueryParam name="w">
+        <Pattern ignoreCase="true">{w}</Pattern>
+    </QueryParam>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source clearPayload="false">request</Source>
+</ExtractVariables>

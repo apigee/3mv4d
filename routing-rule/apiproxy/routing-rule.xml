@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="routing-rule">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1450047534104</CreatedAt>
+    <CreatedBy>rajeev@apigee.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>routing-rule</DisplayName>
+    <LastModifiedAt>1450050063252</LastModifiedAt>
+    <LastModifiedBy>rajeev@apigee.com</LastModifiedBy>
+    <Policies>
+        <Policy>AssignOpenweatherRequestParam</Policy>
+        <Policy>AssignYahooweatherRequestParam</Policy>
+        <Policy>ConvertResponsetoJson</Policy>
+        <Policy>ExtractRequestQueryParam</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources/>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>OpenWeather</TargetEndpoint>
+        <TargetEndpoint>YahooWeather</TargetEndpoint>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+    <validate>false</validate>
+</APIProxy>
