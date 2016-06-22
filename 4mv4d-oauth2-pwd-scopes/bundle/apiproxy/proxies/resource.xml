@@ -1,0 +1,129 @@
+<ProxyEndpoint name='resource'>
+  <Description>the operational API for resources</Description>
+  <HTTPProxyConnection>
+    <BasePath>/4mv4d/oauth-pwd-resources</BasePath>
+    <Properties/>
+    <VirtualHost>secure</VirtualHost>
+  </HTTPProxyConnection>
+
+  <FaultRules/>
+
+  <PreFlow name='PreFlow'>
+      <Request/>
+      <Response/>
+  </PreFlow>
+
+  <PostFlow name='PostFlow'>
+      <Request/>
+      <Response>
+        <Step><Name>AM-CleanResponseHeaders</Name></Step>
+        <Step>
+          <Name>JS-GroomTokenResponse</Name>
+          <Condition>(request.formparam.grant_type = "password") OR (request.formparam.grant_type = "client_credentials")</Condition>
+        </Step>
+      </Response>
+  </PostFlow>
+
+  <Flows>
+    <Flow name='resource1 - scope-01'>
+      <Description>verify a token with scope-01</Description>
+      <!--
+          An example request is like this:
+
+          curl -i -H "authorization: Bearer xxxxx" \
+            'https://ORGNAME-test.apigee.net/4mv4d/oauth-pwd-resources/t1'
+
+          The flow will verify the inbound token and provide a full response
+          only if valid.
+      -->
+      <Request>
+        <Step><Name>OAuthV2-VerifyAccessToken-scope-01</Name></Step>
+      </Request>
+
+      <Response>
+        <Step><Name>AM-Response</Name></Step>
+      </Response>
+
+      <Condition>(proxy.pathsuffix MatchesPath "/t1") and (request.verb = "GET")</Condition>
+    </Flow>
+
+    <Flow name='resource1 - scope-02'>
+      <Description>verify a token with scope-02</Description>
+      <!--
+          An example request is like this:
+
+          curl -i -H "authorization: Bearer xxxxx" \
+            'https://ORGNAME-test.apigee.net/4mv4d/oauth-pwd-resources/t2'
+
+          The flow will verify the inbound token and provide a full response
+          only if valid.
+      -->
+      <Request>
+        <Step><Name>OAuthV2-VerifyAccessToken-scope-02</Name></Step>
+      </Request>
+
+      <Response>
+        <Step><Name>AM-Response</Name></Step>
+      </Response>
+
+      <Condition>(proxy.pathsuffix MatchesPath "/t2") and (request.verb = "GET")</Condition>
+    </Flow>
+
+    <Flow name='resource1 - scope-03'>
+      <Description>verify a token with scope-03</Description>
+      <!--
+          An example request is like this:
+
+          curl -i -H "authorization: Bearer xxxxx" \
+            'https://ORGNAME-test.apigee.net/4mv4d/oauth-pwd-resources/t3'
+
+          The flow will verify the inbound token and provide a full response
+          only if valid.
+      -->
+      <Request>
+        <Step><Name>OAuthV2-VerifyAccessToken-scope-03</Name></Step>
+      </Request>
+
+      <Response>
+        <Step><Name>AM-Response</Name></Step>
+      </Response>
+
+      <Condition>(proxy.pathsuffix MatchesPath "/t3") and (request.verb = "GET")</Condition>
+    </Flow>
+
+    <Flow name='resource1 - scope-04'>
+      <Description>verify a token with scope-04</Description>
+      <!--
+          An example request is like this:
+
+          curl -i -H "authorization: Bearer xxxxx" \
+            'https://ORGNAME-test.apigee.net/4mv4d/oauth-pwd-resources/t4'
+
+          The flow will verify the inbound token and provide a full response
+          only if valid.
+      -->
+      <Request>
+        <Step><Name>OAuthV2-VerifyAccessToken-scope-04</Name></Step>
+      </Request>
+
+      <Response>
+        <Step><Name>AM-Response</Name></Step>
+      </Response>
+
+      <Condition>(proxy.pathsuffix MatchesPath "/t4") and (request.verb = "GET")</Condition>
+    </Flow>
+
+    <Flow name='unknown request'>
+      <Request>
+        <Step><Name>RF-UnknownRequest</Name></Step>
+      </Request>
+      <Response/>
+    </Flow>
+
+  </Flows>
+
+  <!-- There is no backend target. This is a loopback.
+  -->
+  <RouteRule name='NoRouteRule'/>
+
+</ProxyEndpoint>

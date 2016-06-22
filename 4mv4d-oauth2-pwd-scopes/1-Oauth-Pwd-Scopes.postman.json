@@ -1,0 +1,265 @@
+{
+        "id": "b38fa925-0b93-e8cb-7577-2c99a3d860b1",
+        "name": "1 - Oauth-Pwd - Scopes",
+        "description": "",
+        "order": [
+                "1b026371-b442-1b35-0780-d5be7e029cb2",
+                "2d8c2f7b-7366-c40c-45b2-2019872974c3",
+                "cbc51286-5f80-b711-4551-f494432fc58f",
+                "96caa5e8-240a-f4d8-79f7-3c93feea29c9",
+                "9ac4c044-fbfa-c39f-1595-94f4e4753072",
+                "86aab56b-acb1-89b0-92b2-a78ddbd9519a",
+                "a605777e-2a39-78cd-71ee-eac85a7dacb0"
+        ],
+        "folders": [],
+        "timestamp": 1466548697728,
+        "owner": "2578",
+        "public": false,
+        "hasRequests": true,
+        "requests": [
+                {
+                        "id": "1b026371-b442-1b35-0780-d5be7e029cb2",
+                        "headers": "Authorization: Basic bFZmdjBxMlFFNEJCMlZadHpVSlZ1TDVoV3hBTFBmVXg6eGMwb3BKc3JyT1FDalNkUA==\nContent-Type: application/x-www-form-urlencoded\n",
+                        "url": "https://ORGNAME-ENVNAME.apigee.net/4mv4d/oauth2-pwd/token",
+                        "preRequestScript": "",
+                        "pathVariables": {},
+                        "method": "POST",
+                        "data": [
+                                {
+                                        "key": "grant_type",
+                                        "value": "password",
+                                        "type": "text",
+                                        "enabled": true
+                                },
+                                {
+                                        "key": "username",
+                                        "value": "Sydney",
+                                        "type": "text",
+                                        "enabled": true
+                                },
+                                {
+                                        "key": "password",
+                                        "value": "Crosby",
+                                        "type": "text",
+                                        "enabled": true
+                                }
+                        ],
+                        "dataMode": "urlencoded",
+                        "version": 2,
+                        "tests": "",
+                        "currentHelper": "basicAuth",
+                        "helperAttributes": {
+                                "id": "basic",
+                                "username": "CLIENT_ID",
+                                "password": "CLIENT_SECRET",
+                                "saveToRequest": true
+                        },
+                        "time": 1466556973556,
+                        "name": "Request Token - Sydney",
+                        "description": "",
+                        "collectionId": "b38fa925-0b93-e8cb-7577-2c99a3d860b1",
+                        "responses": []
+                },
+                {
+                        "id": "2d8c2f7b-7366-c40c-45b2-2019872974c3",
+                        "headers": "Authorization: Basic bFZmdjBxMlFFNEJCMlZadHpVSlZ1TDVoV3hBTFBmVXg6eGMwb3BKc3JyT1FDalNkUA==\nContent-Type: application/x-www-form-urlencoded\n",
+                        "url": "https://ORGNAME-ENVNAME.apigee.net/4mv4d/oauth2-pwd/token",
+                        "preRequestScript": "",
+                        "pathVariables": {},
+                        "method": "POST",
+                        "data": [
+                                {
+                                        "key": "grant_type",
+                                        "value": "password",
+                                        "type": "text",
+                                        "enabled": true
+                                },
+                                {
+                                        "key": "username",
+                                        "value": "Kris",
+                                        "type": "text",
+                                        "enabled": true
+                                },
+                                {
+                                        "key": "password",
+                                        "value": "Letang",
+                                        "type": "text",
+                                        "enabled": true
+                                }
+                        ],
+                        "dataMode": "urlencoded",
+                        "version": 2,
+                        "tests": "",
+                        "currentHelper": "basicAuth",
+                        "helperAttributes": {
+                                "id": "basic",
+                                "username": "CLIENT_ID",
+                                "password": "CLIENT_SECRET",
+                                "saveToRequest": true
+                        },
+                        "time": 1466556959170,
+                        "name": "Request Token - Kris",
+                        "description": "",
+                        "collectionId": "b38fa925-0b93-e8cb-7577-2c99a3d860b1",
+                        "responses": []
+                },
+                {
+                        "id": "86aab56b-acb1-89b0-92b2-a78ddbd9519a",
+                        "headers": "Authorization: Bearer qOxAXujD7zdXHSPpwKlMkTkcLJDA\n",
+                        "url": "https://ORGNAME-ENVNAME.apigee.net/4mv4d/oauth-pwd-resources/t2",
+                        "preRequestScript": "",
+                        "pathVariables": {},
+                        "method": "GET",
+                        "data": [
+                                {
+                                        "key": "grant_type",
+                                        "value": "password",
+                                        "type": "text",
+                                        "enabled": true
+                                },
+                                {
+                                        "key": "username",
+                                        "value": "dino",
+                                        "type": "text",
+                                        "enabled": true
+                                },
+                                {
+                                        "key": "password",
+                                        "value": "ThisIsInvalid",
+                                        "type": "text",
+                                        "enabled": true
+                                }
+                        ],
+                        "dataMode": "urlencoded",
+                        "version": 2,
+                        "tests": "",
+                        "currentHelper": "normal",
+                        "helperAttributes": {},
+                        "time": 1466549587743,
+                        "name": "Request Resource t2 using token",
+                        "description": "",
+                        "collectionId": "b38fa925-0b93-e8cb-7577-2c99a3d860b1",
+                        "responses": []
+                },
+                {
+                        "id": "96caa5e8-240a-f4d8-79f7-3c93feea29c9",
+                        "headers": "Authorization: Basic bFZmdjBxMlFFNEJCMlZadHpVSlZ1TDVoV3hBTFBmVXg6eGMwb3BKc3JyT1FDalNkUA==\nContent-Type: application/x-www-form-urlencoded\n",
+                        "url": "https://ORGNAME-ENVNAME.apigee.net/4mv4d/oauth2-pwd/token",
+                        "preRequestScript": "",
+                        "pathVariables": {},
+                        "method": "POST",
+                        "data": [
+                                {
+                                        "key": "grant_type",
+                                        "value": "password",
+                                        "type": "text",
+                                        "enabled": true
+                                },
+                                {
+                                        "key": "username",
+                                        "value": "dino",
+                                        "type": "text",
+                                        "enabled": true
+                                },
+                                {
+                                        "key": "password",
+                                        "value": "ThisIsInvalid",
+                                        "type": "text",
+                                        "enabled": true
+                                }
+                        ],
+                        "dataMode": "urlencoded",
+                        "version": 2,
+                        "tests": "",
+                        "currentHelper": "basicAuth",
+                        "helperAttributes": {
+                                "id": "basic",
+                                "username": "CLIENT_ID",
+                                "password": "CLIENT_SECRET",
+                                "saveToRequest": true
+                        },
+                        "time": 1466556997538,
+                        "name": "Request Token - Bad Password",
+                        "description": "",
+                        "collectionId": "b38fa925-0b93-e8cb-7577-2c99a3d860b1",
+                        "responses": []
+                },
+                {
+                        "id": "9ac4c044-fbfa-c39f-1595-94f4e4753072",
+                        "headers": "Authorization: Bearer qOxAXujD7zdXHSPpwKlMkTkcLJDA\n",
+                        "url": "https://ORGNAME-ENVNAME.apigee.net/4mv4d/oauth-pwd-resources/t1",
+                        "preRequestScript": "",
+                        "pathVariables": {},
+                        "method": "GET",
+                        "version": 2,
+                        "tests": "",
+                        "currentHelper": "normal",
+                        "helperAttributes": {},
+                        "time": 1466549410987,
+                        "name": "Request Resource t1 using token",
+                        "description": "",
+                        "collectionId": "b38fa925-0b93-e8cb-7577-2c99a3d860b1",
+                        "responses": []
+                },
+                {
+                        "id": "a605777e-2a39-78cd-71ee-eac85a7dacb0",
+                        "headers": "Authorization: Bearer qOxAXujD7zdXHSPpwKlMkTkcLJDA\n",
+                        "url": "https://ORGNAME-ENVNAME.apigee.net/4mv4d/oauth-pwd-resources/t99",
+                        "preRequestScript": "",
+                        "pathVariables": {},
+                        "method": "GET",
+                        "version": 2,
+                        "tests": "",
+                        "currentHelper": "normal",
+                        "helperAttributes": {},
+                        "time": 1466549618099,
+                        "name": "Request unknown Resource t99 using token",
+                        "description": "",
+                        "collectionId": "b38fa925-0b93-e8cb-7577-2c99a3d860b1",
+                        "responses": []
+                },
+                {
+                        "id": "cbc51286-5f80-b711-4551-f494432fc58f",
+                        "headers": "Authorization: Basic bFZmdjBxMlFFNEJCMlZadHpVSlZ1TDVoV3hBTFBmVXg6eGMwb3BKc3JyT1FDalNkUA==\nContent-Type: application/x-www-form-urlencoded\n",
+                        "url": "https://ORGNAME-ENVNAME.apigee.net/4mv4d/oauth2-pwd/token",
+                        "preRequestScript": "",
+                        "pathVariables": {},
+                        "method": "POST",
+                        "data": [
+                                {
+                                        "key": "grant_type",
+                                        "value": "password",
+                                        "type": "text",
+                                        "enabled": true
+                                },
+                                {
+                                        "key": "username",
+                                        "value": "Evgeny",
+                                        "type": "text",
+                                        "enabled": true
+                                },
+                                {
+                                        "key": "password",
+                                        "value": "Malkin",
+                                        "type": "text",
+                                        "enabled": true
+                                }
+                        ],
+                        "dataMode": "urlencoded",
+                        "version": 2,
+                        "tests": "",
+                        "currentHelper": "basicAuth",
+                        "helperAttributes": {
+                                "id": "basic",
+                                "username": "CLIENT_ID",
+                                "password": "CLIENT_SECRET",
+                                "saveToRequest": true
+                        },
+                        "time": 1466556987126,
+                        "name": "Request Token - Evgeny",
+                        "description": "",
+                        "collectionId": "b38fa925-0b93-e8cb-7577-2c99a3d860b1",
+                        "responses": []
+                }
+        ]
+}

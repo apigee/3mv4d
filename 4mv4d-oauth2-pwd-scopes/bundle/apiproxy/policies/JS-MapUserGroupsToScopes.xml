@@ -1,0 +1,7 @@
+<Javascript name='JS-MapUserGroupsToScopes' timeLimit='200' >
+  <!--
+      This policy performs a lookup to map a set of groups to a list of
+      resources or scopes.
+  -->
+  <ResourceURL>jsc://mapGroupsToScopes.js</ResourceURL>
+</Javascript>

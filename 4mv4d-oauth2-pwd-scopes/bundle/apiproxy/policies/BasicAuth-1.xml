@@ -1,0 +1,8 @@
+<BasicAuthentication name='BasicAuth-1'>
+  <DisplayName>Decode Basic Authentication Header</DisplayName>
+  <Operation>Decode</Operation>
+  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+  <User ref='inbound_client_id' />
+  <Password ref='inbound_client_secret' />
+  <Source>request.header.Authorization</Source>
+</BasicAuthentication>

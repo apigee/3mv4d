@@ -1,0 +1,21 @@
+<Javascript name='JS-ValidateUser' timeLimit='200' >
+  <!--
+      This policy performs user authentication, in support of the
+      password grant_type for OAuth2.0.
+
+      Normally authentication would be done by calling out to an external service,
+      like an LDAP datastore, or something else.
+
+      Just for demonstration purposes, this policy does "local" user
+      authentication against a list of usernames and passwords
+      stored in the Javascript code.
+
+  -->
+  <IncludeURL>jsc://sjcl-core.js</IncludeURL>
+  <IncludeURL>jsc://sjcl-codecString.js</IncludeURL>
+  <IncludeURL>jsc://sjcl-codecHex.js</IncludeURL>
+  <IncludeURL>jsc://sjcl-bitArray.js</IncludeURL>
+  <IncludeURL>jsc://sjcl-sha256.js</IncludeURL>
+  <IncludeURL>jsc://userDb.js</IncludeURL>
+  <ResourceURL>jsc://validateUser.js</ResourceURL>
+</Javascript>
