@@ -44,6 +44,11 @@
           <Name>RF-InvalidGrantType</Name>
           <Condition>request.formparam.grant_type != "password"</Condition>
         </Step>
+        <Step>
+          <!-- do we have both the username and the password? -->
+          <Name>RF-InvalidRequest</Name>
+          <Condition>request.formparam.username = null OR request.formparam.password = null</Condition>
+        </Step>
 
         <Step>
           <!-- this step sets context variable 'user_is_authentic' to true or false. -->

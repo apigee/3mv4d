@@ -5,7 +5,7 @@
 // This code relies on the user database stored / embedded in userDb.js .
 //
 // created: Tue Jan 26 14:07:19 2016
-// last saved: <2016-June-21 15:05:57>
+// last saved: <2016-June-22 13:11:47>
 
 var username = context.getVariable('request.formparam.username');
 var password = context.getVariable('request.formparam.password');
@@ -29,4 +29,5 @@ if (username && password) {
   }
 }
 
+// set the "flow variable", or context variable
 context.setVariable(statusVar, result);
