@@ -74,13 +74,14 @@ Ok, you don't like the easy way. If you want to manually provision this demo, he
 
 ## Running the Demonstrations "manually"
 
-The APIKey is passed in the header "APIKEY".
+The APIKey must be passed in the header "APIKEY".
 
 The requests are of the form
 `GET /4mv4d-filtering-demo/PATH/IATA_CODE`
 
 ...where PATH is replaced by one of
-`iata-t1` , `iata-t2` , `iata-t3` , `iata-t1c` , `iata-t2c` , `iata-t3c` .
+`iata-t1` , `iata-t2` , `iata-t3` , `iata-t1c` , `iata-t2c` , `iata-t3c` ,
+and IATA_CODE is a 3-letter code for an airport, like SEA, SJC, DEN, ATL, YYZ, and so on. 
 
 * t1 implies no filtering
 * t2 filters based on the custom attribute on the API Product
