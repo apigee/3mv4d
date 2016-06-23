@@ -25,6 +25,9 @@ The requests follow this form:
 `iata-t1` , `iata-t2` , `iata-t3` , `iata-t1c` , `iata-t2c` , `iata-t3c` ,
 and IATA_CODE is a 3-letter code for an airport, like SEA, SJC, DEN, ATL, YYZ, and so on. 
 
+Each request retrieves information about an Airport. The actual backing service is a public sandbox service, provided by Amadeus. 
+
+In the PATH, 
 * t1 implies no filtering
 * t2 filters based on the custom attribute on the API Product
 * t3 filters based on the custom attribute on the Client (Developer App)
@@ -63,8 +66,6 @@ There are three flavors of "flow" in the API Proxy: t1, t2, t3.
 There are two API Products, each of which has different filtering metadata, and two Developer Apps, each of which has different filtering metadata.  So you've got a number of different combinations to exercise.
 
 You wouldn't use ALL of these in a real system. The idea is just to show some of what is possible. 
-
-
 
 
 
