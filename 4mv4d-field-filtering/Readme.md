@@ -25,10 +25,20 @@ They are:
   - verifying a valid api key, iltering based on App (Client) metadata, with response cache
 
 
+There are three flavors of "flow" in the API Proxy: t1, t2, t3.
+
+* The t1 flow does no filtering.
+* The t2 flow uses API Product metadata to direct filtering
+* the t3 flow uses metadata on the Developer App to guide the filtering
+
+There are two API Products, each of which has different filtering metadata, and two Developer Apps, each of which has different filtering metadata.  So you've got a number of different combinations to exercise.
+
+You wouldn't use ALL of these in a real system. The idea is just to show some of what is possible. 
+
 
 ## Manually Preparing and Provisioning
 
-If you want to manually provision this demo, here's how:
+Ok, you don't like the easy way. If you want to manually provision this demo, here's how:
 
 1. Import the proxy bundle into any Apigee Edge organization
 
