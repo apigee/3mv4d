@@ -8,11 +8,40 @@ In either case the Proxy retrieves a set of fields to include or exclude from th
 This is a handy pattern for building adaptable facades for APIs.
 It also supports the idea of allowing developers of apps to specify the fields they'd like to include or exclude.
 
+## Pre-requisites
+
+You should clone this repo, and have a bash shell.
+You should have orgadmin rights to a cloud-based Edge organization. 
+
+## The Demonstrations Available Here
+
+There are a variety of API Requests in the API proxy.
+For all of them, the APIKey must be passed in the header "APIKEY".
+
+The requests follow this form: 
+`GET /4mv4d-filtering-demo/PATH/IATA_CODE`
+
+...where PATH is replaced by one of
+`iata-t1` , `iata-t2` , `iata-t3` , `iata-t1c` , `iata-t2c` , `iata-t3c` ,
+and IATA_CODE is a 3-letter code for an airport, like SEA, SJC, DEN, ATL, YYZ, and so on. 
+
+* t1 implies no filtering
+* t2 filters based on the custom attribute on the API Product
+* t3 filters based on the custom attribute on the Client (Developer App)
+* the c suffix indicates that the flow uses the response cache
+
+
 ## The Easy Way
 
 The easy way to run this demonstration is to use the [provision-4mv4d-field-filtering-demo.sh](provision-4mv4d-field-filtering-demo.sh) script to provision the api proxy, api products, and developer apps necessary, and then to import the generated postman collection and invoke APIs from Postman.
 
-Each of the API Requests in the postman collection will demonstrate one aspect of the demo.
+You should run the script from the directory that contains the script and the bundle sub-directory.
+
+## The Postman Collection
+
+[Postman](https://www.getpostman.com/) is a tool for invoking API requests.  The script generates a "collection" for use within Postman, to make it easy to exercise the APIs. 
+
+Each of the API Requests in the generated postman collection will demonstrate one particular aspect of the demo.
 
 They are:
   - verifying a valid api key, no filtering
@@ -34,6 +63,9 @@ There are three flavors of "flow" in the API Proxy: t1, t2, t3.
 There are two API Products, each of which has different filtering metadata, and two Developer Apps, each of which has different filtering metadata.  So you've got a number of different combinations to exercise.
 
 You wouldn't use ALL of these in a real system. The idea is just to show some of what is possible. 
+
+
+
 
 
 ## Manually Preparing and Provisioning
@@ -72,20 +104,5 @@ Ok, you don't like the easy way. If you want to manually provision this demo, he
 5. View and copy the client_id (aka API Key) for each of the above developer apps.  You may want to create other apps that have no access to the api proxy in question, to demonstrate key rejection. 
 
 
-## Running the Demonstrations "manually"
-
-The APIKey must be passed in the header "APIKEY".
-
-The requests are of the form
-`GET /4mv4d-filtering-demo/PATH/IATA_CODE`
-
-...where PATH is replaced by one of
-`iata-t1` , `iata-t2` , `iata-t3` , `iata-t1c` , `iata-t2c` , `iata-t3c` ,
-and IATA_CODE is a 3-letter code for an airport, like SEA, SJC, DEN, ATL, YYZ, and so on. 
-
-* t1 implies no filtering
-* t2 filters based on the custom attribute on the API Product
-* t3 filters based on the custom attribute on the Client (Developer App)
-* the c suffix indicates that the flow uses the response cache
 
 
