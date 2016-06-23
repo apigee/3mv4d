@@ -43,7 +43,8 @@ Ok, you don't like the easy way. If you want to manually provision this demo, he
 1. Import the proxy bundle into any Apigee Edge organization
 
 2. create two API Products, both of which have the api proxy imported above.
-   Both should have "custom attributes", like this:  
+   Both should have "custom attributes", like this:
+   
    | API Product     | attr name     |  value                |
    |-----------------|---------------|-----------------------|
    | Filter-Product1 | filter_fields | city.name, city.state, airports.code, airports.name |
@@ -58,7 +59,8 @@ Ok, you don't like the easy way. If you want to manually provision this demo, he
    to one of the above API Products.
    
    Also, each should have "custom attributes". Configure them like so:
-   || Developer App || API Product    || attr name    ||  value                ||
+   
+   | Developer App  | API Product     | attr name     |  value                  |
    |----------------|-----------------|---------------|-------------------------|
    | Filter-App1    | Filter-Product1 | filter_fields | city.name, city.state, airports.location, airports.code, airports.aircraft_movements |
    |                |                 | filter_action | include                 |
