@@ -8,10 +8,15 @@ In either case the Proxy retrieves a set of fields to include or exclude from th
 This is a handy pattern for building adaptable facades for APIs.
 It also supports the idea of allowing developers of apps to specify the fields they'd like to include or exclude.
 
+## Screencast Explanation
+
+[![Screenshot of demo screencast](docs/Field_Filtering_in_Apigee_Edge.png)](https://youtu.be/KEiAstOQOiY "Field Filtering Demonstration")
+
 ## Pre-requisites
 
-You should clone this repo, and have a bash shell.
-You should have orgadmin rights to a cloud-based Edge organization. 
+To run through this yourself, on your own Apigee Edge organization,
+you should clone this repo, and have a bash shell.
+You should also (obviously?) have orgadmin rights to a cloud-based Edge organization. 
 
 ## The Demonstrations Available Here
 
