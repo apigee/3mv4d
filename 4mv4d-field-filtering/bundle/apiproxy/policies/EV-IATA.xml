@@ -1,0 +1,8 @@
+<ExtractVariables name='EV-IATA'>
+  <DisplayName>Extract a portion of the url path</DisplayName>
+  <Source>request</Source>
+  <URIPath>
+    <Pattern ignoreCase='true'>/iata-{trial}/{iata_code}</Pattern>
+  </URIPath>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

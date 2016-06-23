@@ -1,0 +1,22 @@
+<TargetEndpoint name='amadeus'>
+  <Description>Connect to the sandbox at Amadeus</Description>
+
+  <PreFlow name='PreFlow'>
+    <Request>
+      <Step><Name>AM-OutboundAmadeusApiKey</Name></Step>
+    </Request>
+    <Response/>
+
+  </PreFlow>
+
+  <PostFlow name='PostFlow'>
+    <Request/>
+    <Response/>
+  </PostFlow>
+
+  <Flows/>
+  <FaultRules/>
+  <HTTPTargetConnection>
+    <URL>https://api.sandbox.amadeus.com/{amadeus_path}</URL>
+  </HTTPTargetConnection>
+</TargetEndpoint>

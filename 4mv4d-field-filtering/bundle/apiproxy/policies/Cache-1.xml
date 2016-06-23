@@ -1,0 +1,21 @@
+<ResponseCache name="Cache-1">
+  <DisplayName>Cache-1</DisplayName>
+  <CacheKey>
+    <Prefix>iata</Prefix>
+    <KeyFragment ref="client_id"></KeyFragment>
+    <KeyFragment ref="trial"></KeyFragment>
+    <KeyFragment ref="iata_code"></KeyFragment>
+  </CacheKey>
+  <Scope>Exclusive</Scope>
+  <ExpirySettings>
+<!--
+    <ExpiryDate></ExpiryDate>
+    <TimeOfDay></TimeOfDay>
+-->
+    <TimeoutInSec>120</TimeoutInSec>
+  </ExpirySettings>
+<!--
+  <SkipCacheLookup></SkipCacheLookup>
+  <SkipCachePopulation></SkipCachePopulation>
+-->
+</ResponseCache>
