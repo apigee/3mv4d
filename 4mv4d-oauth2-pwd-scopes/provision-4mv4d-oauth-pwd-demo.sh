@@ -8,7 +8,7 @@
 # support the OAuth2.0 Password Grant demonstration. This script also modifies the
 # accompanying postman collection to allow invoking the APIs. 
 #
-# Last saved: <2016-June-21 19:53:20>
+# Last saved: <2016-June-23 11:57:13>
 #
 
 verbosity=2
@@ -212,9 +212,10 @@ function import_and_deploy_proxy() {
 
     if [[ ! ${CURL_RC} =~ 200 ]]; then
         echo
-        echo "There was an error deploying revision $rev of $apiproxy."
+        echo "There was an error deploying revision $rev of $apiproxyname."
         cat ${CURL_OUT} 1>&2;
         echo
+        exit
     fi
     [ -f ${apiproxyzip} ] && rm -rf ${apiproxyzip}
 }
