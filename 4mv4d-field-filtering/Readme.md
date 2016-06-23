@@ -29,8 +29,8 @@ Each request retrieves information about an Airport. The actual backing service 
 
 In the PATH, 
 * t1 implies no filtering
-* t2 filters based on the custom attribute on the API Product
-* t3 filters based on the custom attribute on the Client (Developer App)
+* t2 filters based on the custom attribute on the Client (Developer App)
+* t3 filters based on the custom attribute on the API Product
 * the c suffix indicates that the flow uses the response cache
 
 
@@ -60,8 +60,8 @@ They are:
 There are three flavors of "flow" in the API Proxy: t1, t2, t3.
 
 * The t1 flow does no filtering.
-* The t2 flow uses API Product metadata to direct filtering
-* the t3 flow uses metadata on the Developer App to guide the filtering
+* the t2 flow uses metadata on the Developer App to guide the filtering
+* The t3 flow uses API Product metadata to direct filtering
 
 There are two API Products, each of which has different filtering metadata, and two Developer Apps, each of which has different filtering metadata.  So you've got a number of different combinations to exercise.
 
