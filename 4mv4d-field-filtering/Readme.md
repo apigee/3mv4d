@@ -41,12 +41,12 @@ There is one interesting method:
 Assume a JS hash like this:
 ```json
 {
-  prop1 : 7,
-  prop2 : [ 1, 2, 3, 4],
-  prop3 : {
-    key1 : 'A',
-    key2 : null,
-    key3 : true
+  "prop1" : 7,
+  "prop2" : [ 1, 2, 3, 4],
+  "prop3" : {
+    "key1" : 'A',
+    "key2" : null,
+    "key3" : true
   }
 }
 ```
@@ -56,9 +56,9 @@ With action = 'include' and the fields array like this:
 
 ```json
 {
-  prop1 : 7,
-  propn : {
-    key1 : 'A'
+  "prop1" : 7,
+  "prop3" : {
+    "key1" : 'A'
   }
 }
 ```
@@ -69,20 +69,20 @@ Assume a JS hash like this:
 
 ```json
 {
-  prop1 : 7,
-  prop2 : [ 1, 2, 3, 4],
-  data : [{
-    key1 : 'A',
-    key2 : null,
-    key3 : true
+  "prop1" : 7,
+  "prop2" : [ 1, 2, 3, 4],
+  "data" : [{
+    "key1" : 'A',
+    "key2" : null,
+    "key3" : true
   },{
-    key1 : 'B',
-    key2 : "alpha",
-    key3 : false
+    "key1" : 'B',
+    "key2" : "alpha",
+    "key3" : false
   },{
-    key1 : 'C',
-    key2 : "yertle",
-    key3 : false
+    "key1" : 'C',
+    "key2" : "yertle",
+    "key3" : false
   }]
 }
 ```
@@ -92,13 +92,13 @@ With action = 'include' and the fields array like this:
 
 ```json
 {
-  prop2 : [ 1, 2, 3, 4],
-  data : [{
-    key1 : 'A'
+  "prop2" : [ 1, 2, 3, 4],
+  "data" : [{
+    "key1" : 'A'
   },{
-    key1 : 'B',
+    "key1" : 'B',
   },{
-    key1 : 'C',
+    "key1" : 'C',
   }]
 }
 ```
@@ -110,16 +110,16 @@ Assume the same JS hash as above. With action = 'exclude' and the fields array l
 
 ```json
 {
-  prop1 : 7,
-  data : [{
-    key2 : null,
-    key3 : true
+  "prop1" : 7,
+  "data" : [{
+    "key2" : null,
+    "key3" : true
   },{
-    key2 : "alpha",
-    key3 : false
+    "key2" : "alpha",
+    "key3" : false
   },{
-    key2 : "yertle",
-    key3 : false
+    "key2" : "yertle",
+    "key3" : false
   }]
 }
 ```
