@@ -12,9 +12,123 @@ It also supports the idea of allowing developers of apps to specify the fields t
 
 [![Screenshot of demo screencast](docs/Field_Filtering_in_Apigee_Edge.png)](https://youtu.be/KEiAstOQOiY "Field Filtering Demonstration")
 
-## Pre-requisites
+## Let's talk about Service Virtualization
 
-To run through this yourself, on your own Apigee Edge organization,
+We sometimes speak of "service virtualization" - this means that the Apigee Edge proxy that you configure, modifies the response from the backend in some way, so that the app sending requests through Edge is seeing a _different_, **virtualized** service. This could mean different verb + resource pairs, different formats (transforming XML to JSON), or different payloads. It could also mean "server side mashups" where the API exposed from Edge calls multiple backend systems. 
+
+## OK, What is Field Filtering?
+
+Within the realm of Service Virtualization, sometimes you want to change the response payload. Specifically the backend may return a very large payload, and you'd like to winnow it down to the minimum required for the App, or for the API Product you're exposing.
+
+Maybe it's a healthcare scenario and you want to eliminate some information for privacy purposes. Maybe it's a retail scenario and you want to eliminate internal part numbers or inventory-on-hand information. Maybe it's just because the client is a mobile app and you want to economize on the payload size. 
+
+We can call the general approach "Field Filtering", and you can do it within Apigee Edge.  Very easily! This code repo provides an example that you can use, and extend or apply to your own scenario. 
+
+The logic for filtering fields (include or exclude) from a JSON hash is provided in a JavaScript callout - a bit of custom JavaScript that runs within an Edge policy.
+
+There is one interesting method:
+
+```
+ function applyFieldFilter(action, obj, fields) {...}
+
+   @action : 'include' or 'exclude'
+   @obj : a JS hash
+   @fields: an array of strings, referring to fields within the hash
+```
+
+### Example 1: The Basics
+
+Assume a JS hash like this:
+```json
+{
+  prop1 : 7,
+  prop2 : [ 1, 2, 3, 4],
+  prop3 : {
+    key1 : 'A',
+    key2 : null,
+    key3 : true
+  }
+}
+```
+
+With action = 'include' and the fields array like this:
+`['prop1', 'prop3.key1']` ...the output will be a hash like so:
+
+```json
+{
+  prop1 : 7,
+  propn : {
+    key1 : 'A'
+  }
+}
+```
+
+### Example 2: Arrays
+
+Assume a JS hash like this:
+
+```json
+{
+  prop1 : 7,
+  prop2 : [ 1, 2, 3, 4],
+  data : [{
+    key1 : 'A',
+    key2 : null,
+    key3 : true
+  },{
+    key1 : 'B',
+    key2 : "alpha",
+    key3 : false
+  },{
+    key1 : 'C',
+    key2 : "yertle",
+    key3 : false
+  }]
+}
+```
+
+With action = 'include' and the fields array like this:
+`['prop2', 'data.key1']` ...the output will be:
+
+```json
+{
+  prop2 : [ 1, 2, 3, 4],
+  data : [{
+    key1 : 'A'
+  },{
+    key1 : 'B',
+  },{
+    key1 : 'C',
+  }]
+}
+```
+
+### Example 3: Arrays and excluding
+
+Assume the same JS hash as above. With action = 'exclude' and the fields array like this:
+`['prop2', 'data.key1']` ...the output will be:
+
+```json
+{
+  prop1 : 7,
+  data : [{
+    key2 : null,
+    key3 : true
+  },{
+    key2 : "alpha",
+    key3 : false
+  },{
+    key2 : "yertle",
+    key3 : false
+  }]
+}
+```
+
+
+
+## Pre-requisites for the Demo
+
+To install and use this example yourself, on your own Apigee Edge organization,
 you should clone this repo, and have a bash shell.
 You should also (obviously?) have orgadmin rights to a cloud-based Edge organization. 
 
