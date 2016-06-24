@@ -8,7 +8,7 @@
 # support the Field filtering demonstration. This script also modifies the
 # accompanying postman collection to allow invoking the APIs. 
 #
-# Last saved: <2016-June-23 13:23:18>
+# Last saved: <2016-June-23 21:38:59>
 #
 
 verbosity=2
@@ -102,7 +102,6 @@ function choose_mgmtserver() {
 
 function choose_credentials() {
   local username password
-
   read -p "username for Edge org ${orgname} at ${mgmtserver} ? (blank to use .netrc): " username
   echo
   if [[ "$username" = "" ]] ; then  
@@ -215,8 +214,7 @@ function import_and_deploy_proxy() {
     echo This is revision $rev
 
     # deploy (with override) will implicitly undeploy any existing deployed revisions
-    MYCURL -X POST \
-        -H content-type:application/x-www-form-urlencoded \
+    MYCURL -X POST -H content-type:application/x-www-form-urlencoded \
         "${mgmtserver}/v1/o/${orgname}/e/${envname}/apis/${apiproxyname}/revisions/${rev}/deployments" \
         -d "override=true&delay=60"
 
@@ -494,7 +492,7 @@ function uuid() {
 
 echo
 echo "This script imports an API Proxy, then creates a Developer, two API Products, and four developer apps,"
-echo "all but one of which are enabled on that API product. Emits the client id for eacg app. Then produces"
+echo "all but one of which are enabled on that API product. Emits the client id for each app. Then produces"
 echo "a postman collection which will use those values."
 echo "=============================================================================="
 
