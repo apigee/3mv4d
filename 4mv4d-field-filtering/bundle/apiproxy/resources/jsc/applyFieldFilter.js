@@ -16,18 +16,13 @@
 //    </Javascript>
 //
 // created: Wed Jan 13 12:12:56 2016
-// last saved: <2016-June-23 13:33:17>
+// last saved: <2016-June-24 08:25:03>
 /* jshint -W053 */
 /* jshint -W002 */
 
+var disabled = requestHasDisabledFiltering();
 
-var re1a = new RegExp('[ ,]'),
-    hdr = context.getVariable('request.header.X-tweak.values') + '',
-    tweak = hdr.toLowerCase().substring(1, hdr.length-1).split(re1a);
-
-// check to see if this filtering is "turned off"
-if (tweak.indexOf('no-filter') == -1) {
-  // apply the field filter, and replace the response output
+if ( ! disabled) {
   var action = getFilterAction();
   var namedFields = getNamedFieldsToFilter();
   context.setVariable('filterAction', action); // diagnostics
@@ -39,6 +34,16 @@ if (tweak.indexOf('no-filter') == -1) {
 
 
 // ====================================================================
+
+function requestHasDisabledFiltering() {
+  // Just for purposes of the demonstration, we can show how to disable
+  // this filtering at runtime based on the presence of a special HTTP
+  // header in the request.
+  var re1a = new RegExp('[ ,]'),
+      hdr = context.getVariable('request.header.X-tweak.values') + '',
+      tweak = hdr.toLowerCase().substring(1, hdr.length-1).split(re1a);
+  return tweak.indexOf('no-filter') !== -1;
+}
 
 function getFilterAction() {
   var action = properties.action, re1 = new RegExp('{([^ ,}]+)}'), match;
