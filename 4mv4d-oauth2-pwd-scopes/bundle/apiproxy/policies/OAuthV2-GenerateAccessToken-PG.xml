@@ -32,6 +32,7 @@
   <GrantType>request.formparam.grant_type</GrantType>
 
   <!-- variable that specifies the scopes to use -->
+  <!-- make sure that the API product has the scopes configured -->
   <Scope>user_scopes</Scope>
 
   <!--
