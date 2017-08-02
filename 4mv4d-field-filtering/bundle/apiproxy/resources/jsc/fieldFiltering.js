@@ -10,10 +10,6 @@
 //    @obj : a JS hash
 //    @fields: an array of strings, referring to fields within the hash
 //
-//
-// created: Mon Apr 11 17:48:59 2016
-// last saved: <2016-June-23 09:03:50>
-//
 // Example 1:
 // assume a JS hash like this:
 // {
@@ -38,6 +34,13 @@
 //   }
 // }
 //
+// Example 1a:
+// The same result can be achieved using a GraphQL expression. The equivalent to
+// the above example is:
+//
+// "{ prop1 prop3 { key1 } }"
+//
+//
 // Example 2:
 // assume a JS hash like this:
 // {
@@ -49,11 +52,11 @@
 //     key3 : true
 //   },{
 //     key1 : 'B',
-//     key2 : "alpha",
-//     key3 : false
+//     key2 : null,
+//     key3 : null
 //   },{
 //     key1 : 'C',
-//     key2 : "yertle",
+//     key2 : null,
 //     key3 : false
 //   }]
 // }
@@ -89,15 +92,17 @@
 //     key2 : null,
 //     key3 : true
 //   },{
-//     key2 : "alpha",
-//     key3 : false
+//     key2 : null,
+//     key3 : null
 //   },{
-//     key2 : "yertle",
+//     key2 : null,
 //     key3 : false
 //   }]
 // }
 //
 //
+// created: Mon Apr 11 17:48:59 2016
+// last saved: <2016-April-15 17:41:03>
 
 
 (function (){
@@ -139,16 +144,34 @@
   }
 
   function _elaborateFields(fields, prefix) {
-    fields.sort();
-    prefix = prefix || "";
-    // elaborate the field list to find references to nested fields
-    var elabfields = {};
-    fields.forEach(function(field) {
-      elabfields = _deepmerge(elabfields, _produceHash(field));
-    });
-    return elabfields;
+    // input is either an array of field names
+    // or a graphql expression.
+    if (Array.isArray(fields) ) {
+      // in: ['prop1', 'prop3.key1']
+      // out: { "prop1": true, "prop3" : { "key1" : true } }
+      fields.sort();
+      prefix = prefix || "";
+      // elaborate the field list to find references to nested fields
+      var elabfields = {};
+      fields.forEach(function(field) {
+        elabfields = _deepmerge(elabfields, _produceHash(field));
+      });
+      return elabfields;
+    }
+    if (typeof fields === 'string' ){
+      // transform GraphQL string into a hash of the desired kind.
+      // in: { prop1 prop3 { key1 } }
+      // out: { "prop1": true, "prop3" : { "key1" : true } }
+      //
+      fields = fields.replace(new RegExp('\\s+', 'g'), ' ')
+        .replace(new RegExp('(.){', 'g'), '$1: {')
+        .replace(new RegExp('([a-zA-Z_$][\\w$]*)(\\s+)', 'g'), '"$1" ')
+        .replace(new RegExp('"\\s+(?!:)', 'g'), '" : true,')
+        .replace(new RegExp(',\\s*}', 'g'), '}');
+      return JSON.parse(fields);
+    }
+    return null;
   }
-
 
 
   function _includeFields(obj, fieldset) {
@@ -207,7 +230,6 @@
     });
     return newObj;
   }
-
 
   function applyFieldFilter(action, obj, fields) {
     if ( !fields || fields.length === 0) {

@@ -14,6 +14,5 @@
   <AssignVariable>
     <Name>target.url</Name>
     <Value>https://api.sandbox.amadeus.com/v1.2/location/{iata_code}?apikey=2Tr0M4kftv8GEhmcQspfFZt5tHZSbgi9</Value>
-
   </AssignVariable>
 </AssignMessage>

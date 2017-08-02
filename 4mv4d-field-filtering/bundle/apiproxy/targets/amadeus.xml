@@ -17,6 +17,6 @@
   <Flows/>
   <FaultRules/>
   <HTTPTargetConnection>
-    <URL>https://api.sandbox.amadeus.com/{amadeus_path}</URL>
+    <URL>https://api.sandbox.amadeus.com/{amadeus_path}/this.does.not.work.but.will/be.replaced</URL>
   </HTTPTargetConnection>
 </TargetEndpoint>
