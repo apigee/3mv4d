@@ -8,12 +8,17 @@
 //
 //    <Javascript name='JS-FilterFields-Course' timeLimit='800' >
 //      <Properties>
+//        <Property name='source'>content-var-containing-json</Property>
+//        <Property name='destination'>content-var-which-gets-transformed-result</Property>
 //        <Property name='action'>exclude</Property> <!-- or include -->
 //        <Property name='fields'>curriculum.href,current.href</Property>
 //      </Properties>
 //      <IncludeURL>jsc://fieldFiltering.js</IncludeURL>
 //      <ResourceURL>jsc://applyFieldFilter.js</ResourceURL>
 //    </Javascript>
+//
+// source is response.content by default.
+// destination is response.content by default.
 //
 // Example usage with GraphQL
 //
@@ -27,21 +32,22 @@
 //    </Javascript>
 //
 // created: Wed Jan 13 12:12:56 2016
-// last saved: <2017-August-02 11:00:59>
+// last saved: <2017-August-10 10:17:20>
 /* jshint -W053 */
 /* jshint -W002 */
 
 var disabled = requestHasDisabledFiltering();
-
 if ( ! disabled) {
   // apply the field filter, and replace the response output
+  var sourceObj = JSON.parse((properties.source)? context.getVariable(properties.source): response.content);
   var action = getFilterAction();
   var namedFields = getNamedFieldsToFilter();
   context.setVariable('filterAction', action); // diagnostics
   context.setVariable('filterFields', JSON.stringify(namedFields)); // diagnostics
-  var newResponse = applyFieldFilter(action, JSON.parse(response.content), namedFields);
+  var transformedPayload = applyFieldFilter(action, sourceObj, namedFields);
   // pretty print the output
-  response.content = JSON.stringify(newResponse, null, 2) + '\n';
+  context.setVariable((properties.destination) ? properties.destination : 'response.content',
+                      JSON.stringify(transformedPayload, null, 2) + '\n');
 }
 
 // ====================================================================

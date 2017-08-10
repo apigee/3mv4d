@@ -176,58 +176,74 @@
 
   function _includeFields(obj, fieldset) {
     var newObj = {};
-    Object.keys(fieldset).forEach(function(key) {
-      if (obj.hasOwnProperty(key)) {
-        if (fieldset[key] === true) {
-          // pass the property through unchanged
-          newObj[key] = obj[key];
-        }
-        else {
-          // means this is a set of nested fields
-          var o = obj[key];
-          if (Array.isArray(o)) {
-            // o, the child in the source object, is an array.
-            // Therefore apply the included fields
-            newObj[key] = [];
-            o.forEach(function(item) {
-              newObj[key].push(_includeFields(item, fieldset[key]));
-            });
+    if (Array.isArray(obj)) {
+      newObj = [];
+      obj.forEach(function(item) {
+        newObj.push(_includeFields(item, fieldset));
+      });
+    }
+    else {
+      Object.keys(fieldset).forEach(function(key) {
+        if (obj.hasOwnProperty(key)) {
+          if (fieldset[key] === true) {
+            // pass the property through unchanged
+            newObj[key] = obj[key];
           }
           else {
-            // the child is not an array; presume a nested hash
-            newObj[key] = _includeFields(o, fieldset[key]);
+            // means this is a set of nested fields
+            var o = obj[key];
+            if (Array.isArray(o)) {
+              // o, the child in the source object, is an array.
+              // Therefore apply the included fields
+              newObj[key] = [];
+              o.forEach(function(item) {
+                newObj[key].push(_includeFields(item, fieldset[key]));
+              });
+            }
+            else {
+              // the child is not an array; presume a nested hash
+              newObj[key] = _includeFields(o, fieldset[key]);
+            }
           }
         }
-      }
-    });
+      });
+    }
     return newObj;
   }
 
 
   function _excludeFields(obj, fieldset) {
     var newObj = {};
-    Object.keys(obj).forEach(function(key){
-      if ( ! fieldset.hasOwnProperty(key)) {
-        // copy through properties not explicitly excluded
-        newObj[key] = obj[key];
-      }
-      else if (fieldset[key] !== true) {
-        // means this is a set of nested fields to exclude
-        var o = obj[key];
-        if (Array.isArray(o)) {
-          // o, the child in the source object, is an array.
-          // Therefore apply the excluded fields.
-          newObj[key] = [];
-          o.forEach(function(item) {
-            newObj[key].push(_excludeFields(item, fieldset[key]));
-          });
+    if (Array.isArray(obj)) {
+      newObj = [];
+      obj.forEach(function(item) {
+        newObj.push(_excludeFields(item, fieldset));
+      });
+    }
+    else {
+      Object.keys(obj).forEach(function(key){
+        if ( ! fieldset.hasOwnProperty(key)) {
+          // copy through properties not explicitly excluded
+          newObj[key] = obj[key];
         }
-        else {
-          // the child is not an array; presume a nested hash
-          newObj[key] = _excludeFields(o, fieldset[key]);
+        else if (fieldset[key] !== true) {
+          // means this is a set of nested fields to exclude
+          var o = obj[key];
+          if (Array.isArray(o)) {
+            // o, the child in the source object, is an array.
+            // Therefore apply the excluded fields.
+            newObj[key] = [];
+            o.forEach(function(item) {
+              newObj[key].push(_excludeFields(item, fieldset[key]));
+            });
+          }
+          else {
+            // the child is not an array; presume a nested hash
+            newObj[key] = _excludeFields(o, fieldset[key]);
+          }
         }
-      }
-    });
+      });
+    }
     return newObj;
   }
 
