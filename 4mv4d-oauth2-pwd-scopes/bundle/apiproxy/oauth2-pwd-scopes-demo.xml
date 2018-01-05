@@ -1,0 +1,12 @@
+<APIProxy revision='1' name='oauth2-pwd-scopes-demo'>
+  <ConfigurationVersion minorVersion='0' majorVersion='4'/>
+  <CreatedAt>1458959730864</CreatedAt>
+  <CreatedBy>dino</CreatedBy>
+  <Description>Dispense OAuth v2.0 Bearer tokens for password grant_types. Also verify tokens. In this proxy, the user authentication is handled by a mock service.</Description>
+  <DisplayName>oauth2-pwd-scopes-demo</DisplayName>
+  <LastModifiedAt>1466557151742</LastModifiedAt>
+  <LastModifiedBy>orgAdmin</LastModifiedBy>
+  <TargetEndpoints>
+    <TargetEndpoint>default</TargetEndpoint>
+  </TargetEndpoints>
+</APIProxy>

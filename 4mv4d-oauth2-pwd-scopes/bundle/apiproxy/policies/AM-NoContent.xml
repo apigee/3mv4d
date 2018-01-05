@@ -1,0 +1,12 @@
+<AssignMessage name='AM-NoContent'>
+  <DisplayName>AM-NoContent</DisplayName>
+  <!-- <AssignTo createNew='false' transport='http' type='request'></AssignTo> -->
+  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+  <Remove>
+    <Payload/>
+  </Remove>
+  <Set>
+    <StatusCode>204</StatusCode>
+    <ReasonPhrase>No Content</ReasonPhrase>
+  </Set>
+</AssignMessage>

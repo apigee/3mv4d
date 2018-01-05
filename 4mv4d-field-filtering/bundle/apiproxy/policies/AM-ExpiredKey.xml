@@ -1,0 +1,15 @@
+<AssignMessage name="AM-ExpiredKey">
+  <Set>
+    <StatusCode>401</StatusCode>
+    <ReasonPhrase>Not Authorized</ReasonPhrase>
+    <Payload contentType="application/json" variablePrefix="%" variableSuffix="#">{
+  "error" : {
+    "code" : 401.24,
+    "message" : "the apikey is expired"
+  }
+}
+</Payload>
+  </Set>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

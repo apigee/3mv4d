@@ -1,0 +1,7 @@
+<OAuthV2 name='OAuthV2-InvalidateToken-1'>
+  <Operation>InvalidateToken</Operation> <!-- aka "Revoke" token -->
+  <Tokens>
+    <Token type='accesstoken'
+           cascade='false'>request.formparam.token</Token>
+  </Tokens>
+</OAuthV2>

@@ -1,0 +1,17 @@
+<RaiseFault name='RF-NotAuthorized'>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <FaultResponse>
+    <Set>
+      <Payload contentType='application/json'
+               variablePrefix='%' variableSuffix='#'><![CDATA[{
+  "error" : {
+    "code" : 401.03,
+    "message" : "authentication failed"
+  }
+}
+]]></Payload>
+      <StatusCode>401</StatusCode>
+      <ReasonPhrase>Unauthorized</ReasonPhrase>
+    </Set>
+  </FaultResponse>
+</RaiseFault>

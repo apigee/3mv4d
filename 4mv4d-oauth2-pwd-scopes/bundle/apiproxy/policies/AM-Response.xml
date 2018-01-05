@@ -1,0 +1,48 @@
+<AssignMessage name='AM-Response'>
+  <Remove>
+    <Headers>
+      <Header name='Accept'/>
+      <Header name='Host'/>
+      <Header name='user-agent'/>
+      <Header name='Authorization'/>
+      <Header name='Signature'/>
+      <Header name='Date'/>
+      <Header name='X-Powered-By'/>
+      <Header name='X-Forwarded-For'/>
+      <Header name='X-Forwarded-Host'/>
+      <Header name='X-Forwarded-Server'/>
+      <Header name='X-Forwarded-Port'/>
+      <Header name='X-Forwarded-Proto'/>
+    </Headers>
+  </Remove>
+  <Set>
+    <Payload contentType='application/json' variablePrefix='%' variableSuffix='#'><![CDATA[
+{
+  "system-info" : {
+    "organization.name" : "%organization.name#",
+    "environment.name" : "%environment.name#",
+    "system.time" : "%system.time#",
+    "system.timestamp" : "%system.timestamp#"
+  },
+  "request-info" :{
+    "apiproxy.name" : "%apiproxy.name#",
+    "apiproxy.revision" : "%apiproxy.revision#",
+    "proxy.endpoint" : "%proxy.name#",
+    "client.ip" : "%client.ip#",
+    "messageprocessor_id" : "%system.uuid#",
+    "message_id" : "%messageid#",
+    "request.path" : "%request.path#",
+    "num_queryparams" : "%test_qparam_names_length#"
+  },
+  "accesstoken-info" : {
+    "expires_in_s" : %expires_in#,
+    "id_of_app_developer" : "%developer.id#",
+    "name_of_registered_app" : "%developer.app.name#",
+    "name_of_apiproduct" : "%apiproduct.name#"
+  }
+}
+]]></Payload>
+    </Set>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <AssignTo createNew='false' transport='http' type='response'></AssignTo>
+</AssignMessage>

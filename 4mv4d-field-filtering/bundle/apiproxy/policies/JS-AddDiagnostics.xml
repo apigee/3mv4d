@@ -1,0 +1,3 @@
+<Javascript name='JS-AddDiagnostics' timeLimit='200' >
+  <ResourceURL>jsc://addDiagnostics.js</ResourceURL>
+</Javascript>

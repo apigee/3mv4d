@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="4mv4d-field-filtering-demo">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1452715334834</CreatedAt>
+    <CreatedBy>DChiesa@apigee.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>4mv4d-field-filtering-demo</DisplayName>
+    <LastModifiedAt>1466713648718</LastModifiedAt>
+    <LastModifiedBy>DChiesa@apigee.com</LastModifiedBy>
+    <Policies/>
+    <ProxyEndpoints>
+      <ProxyEndpoint>4mv4d-filtering-demo</ProxyEndpoint>
+    </ProxyEndpoints>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>amadeus</TargetEndpoint>
+    </TargetEndpoints>
+    <validate>false</validate>
+</APIProxy>

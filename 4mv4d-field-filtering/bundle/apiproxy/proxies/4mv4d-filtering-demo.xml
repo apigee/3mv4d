@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="4mv4d-filtering-demo">
+  <Description/>
+  <HTTPProxyConnection>
+    <BasePath>/4mv4d-filtering-demo</BasePath>
+    <VirtualHost>secure</VirtualHost>
+  </HTTPProxyConnection>
+
+  <PreFlow name="PreFlow">
+    <Request/>
+    <Response/>
+  </PreFlow>
+  <PostFlow name="PostFlow">
+    <Request/>
+    <Response>
+      <Step><Name>AM-CleanResponseHeaders</Name></Step>
+    </Response>
+  </PostFlow>
+
+  <FaultRules>
+    <FaultRule name="invalid-key">
+      <Step>
+        <Name>AM-InvalidApiKey</Name>
+      </Step>
+      <Condition>fault.name = "InvalidApiKey" OR fault.name = "InvalidApiKeyForGivenResource"</Condition>
+    </FaultRule>
+
+    <FaultRule name="missing-key">
+      <Step>
+        <Name>AM-MissingKey</Name>
+      </Step>
+      <Condition>fault.name = "FailedToResolveAPIKey"</Condition>
+    </FaultRule>
+
+    <FaultRule name="key-expired">
+      <Step>
+        <Name>AM-ExpiredKey</Name>
+      </Step>
+      <Condition>fault.name = "consumer_key_expired"</Condition>
+    </FaultRule>
+
+  </FaultRules>
+
+
+  <Flows>
+    <Flow name='filter out invalid requests'>
+      <Request>
+        <Step><Name>RF-BadRequest</Name></Step>
+      </Request>
+      <Response>
+      </Response>
+      <Condition>(request.header.accept =| "application/xml") or (request.header.accept =| "text/xml") or (request.verb != "GET")</Condition>
+    </Flow>
+
+
+    <Flow name='get IATA info - passthrough'>
+      <Request>
+        <Step><Name>VerifyAPIKey-1</Name></Step>
+        <Step><Name>EV-IATA</Name></Step>
+      </Request>
+
+      <Response>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/iata-t1/*") and (request.verb = "GET")</Condition>
+    </Flow>
+
+    <Flow name='get IATA info - passthrough, with cache'>
+      <Request>
+        <Step><Name>VerifyAPIKey-1</Name></Step>
+        <Step><Name>EV-IATA</Name></Step>
+        <Step><Name>Cache-1</Name></Step>
+      </Request>
+
+      <Response>
+        <Step><Name>Cache-1</Name></Step>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/iata-t1c/*") and (request.verb = "GET")</Condition>
+    </Flow>
+
+
+    <Flow name='get IATA info and shape response based on client id'>
+      <Request>
+        <Step><Name>VerifyAPIKey-1</Name></Step>
+        <Step><Name>EV-IATA</Name></Step>
+      </Request>
+
+      <Response>
+        <Step><Name>JS-ApplyFieldFilter-Client</Name></Step>
+        <Step><Name>JS-AddDiagnostics</Name></Step>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/iata-t2/*") and (request.verb = "GET")</Condition>
+    </Flow>
+
+    <Flow name='get IATA info and shape response based on client id, cache'>
+      <Request>
+        <Step><Name>VerifyAPIKey-1</Name></Step>
+        <Step><Name>EV-IATA</Name></Step>
+        <Step><Name>Cache-2</Name></Step>
+      </Request>
+
+      <Response>
+        <Step><Name>JS-ApplyFieldFilter-Client</Name></Step>
+        <Step><Name>JS-AddDiagnostics</Name></Step>
+        <Step><Name>Cache-2</Name></Step>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/iata-t2c/*") and (request.verb = "GET")</Condition>
+    </Flow>
+
+
+    <Flow name='get IATA info and shape response based on API Product'>
+      <Request>
+        <Step><Name>VerifyAPIKey-1</Name></Step>
+        <Step><Name>EV-IATA</Name></Step>
+      </Request>
+
+      <Response>
+        <Step><Name>JS-ApplyFieldFilter-Product</Name></Step>
+        <Step><Name>JS-AddDiagnostics</Name></Step>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/iata-t3/*") and (request.verb = "GET")</Condition>
+    </Flow>
+
+
+    <Flow name='get IATA info and shape response based on API Product, cache'>
+      <Request>
+        <Step><Name>VerifyAPIKey-1</Name></Step>
+        <Step><Name>EV-IATA</Name></Step>
+        <Step><Name>Cache-3</Name></Step>
+      </Request>
+
+      <Response>
+        <Step><Name>JS-ApplyFieldFilter-Product</Name></Step>
+        <Step><Name>JS-AddDiagnostics</Name></Step>
+        <Step><Name>Cache-3</Name></Step>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/iata-t3c/*") and (request.verb = "GET")</Condition>
+    </Flow>
+
+    <Flow name='unknown request'>
+      <Request>
+        <Step><Name>RF-UnknownRequest</Name></Step>
+      </Request>
+      <Response/>
+    </Flow>
+
+  </Flows>
+
+  <RouteRule name="default">
+    <TargetEndpoint>amadeus</TargetEndpoint>
+  </RouteRule>
+</ProxyEndpoint>

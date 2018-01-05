@@ -1,0 +1,18 @@
+<AssignMessage name='AM-OutboundAmadeusApiKey'>
+  <AssignTo createNew='false' type='request'/>
+  <Remove>
+    <Headers>
+      <Header name='apikey'/>
+      <Header name='cookie'/>
+      <Header name='user-agent'/>
+      <Header name='postman-token'/>
+      <Header name='x-forwarded-for'/>
+      <Header name='x-forwarded-port'/>
+      <Header name='x-forwarded-proto'/>
+    </Headers>
+  </Remove>
+  <AssignVariable>
+    <Name>target.url</Name>
+    <Value>https://api.sandbox.amadeus.com/v1.2/location/{iata_code}?apikey=2Tr0M4kftv8GEhmcQspfFZt5tHZSbgi9</Value>
+  </AssignVariable>
+</AssignMessage>

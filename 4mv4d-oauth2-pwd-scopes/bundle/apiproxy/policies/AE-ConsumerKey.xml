@@ -1,0 +1,8 @@
+<AccessEntity name='AE-ConsumerKey'>
+  <EntityType value='consumerkey' />
+  <EntityIdentifier ref="inbound_client_id" type="consumerkey"/>>
+  <!--
+      The result is stored in a variable:  AccessEntity.AE-ConsumerKey
+      Next step is to use ExtractVariables to get a value from that entity.
+  -->
+</AccessEntity>
